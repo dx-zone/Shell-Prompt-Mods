@@ -1,0 +1,173 @@
+#!/usr/bin/env zsh
+
+# This script will look for Oh My Zsh directory, and install it if not found, or load it up and switch to ZSH if you are using other terminal colorizing tool on non-zsh terminal
+
+# Oh My Zsh!
+# https://ohmyz.sh
+
+# Install oh-my-zsh
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+if [[ ! -d ~/.oh-my-zsh/ ]]
+then
+  echo "Directory ~/.oh-my-zsh/ does not exists.\nInstalling Oh My Zsh"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+# Switch to zsh, if zsh is not in use in the current session, to activate Oh My Zsh
+GREET='
+Shell successfully changed to `/bin/zsh`.
+
+         __                                     __
+  ____  / /_     ____ ___  __  __   ____  _____/ /_
+ / __ \/ __ \   / __ `__ \/ / / /  /_  / / ___/ __ \
+/ /_/ / / / /  / / / / / / /_/ /    / /_(__  ) / / /
+\____/_/ /_/  /_/ /_/ /_/\__, /    /___/____/_/ /_/
+                        /____/                       ....is now activated!
+
+
+Before you scream Oh My Zsh! look over the `~/.zshrc` file to select plugins, themes, and options.
+'
+
+if [[ $0 != zsh && -d ~/.oh-my-zsh/ ]]
+then
+  echo $GREET
+  zsh
+fi
+
+# Uninstall oh-my-zsh
+# sudo chmod 777 ~/.oh-my-zsh/tools/uninstall.sh
+# ~/.oh-my-zsh/tools/uninstall.sh
+
+# If you come from bash you might have to change your $PATH.
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+export PATH="/usr/local/sbin:$PATH"
+
+# My favorite aliases
+alias ll='ls -alFihp'
+alias la='ls -A'
+alias lt='ls -alFihpt'
+alias lr='ls -alFihptr'
+alias ld='ls -DalFihptr'
+alias l='ls -CF'
+alias rm='rm -i'
+alias now='date +%H:%M'
+alias conn='ssh -l root'
+alias sshin='ssh -l root'
+alias tree='tree -Cl'
+alias python=/usr/local/bin/python3
+
+### Alias for SSH Tunnel
+### Variables to set the SSH Tunneling command
+TARGET='host.example.net'  # This is the server we want to SSH in to tunnel that server's port back to our local machine port
+LOCAL_HOST_PORT=4443  # Port number in our local machine that will map/tunnel back the remote server's port (HTTPS/443 in our example) in our local machine
+LOCAL_HOST_IP='localhost' # This could be localhost (127.0.0.1) or the IP of the local machine
+TARGET_SRC_PORT=443  # Port number of the remote server we want to tunnel
+SSH_USER='my_ssh_user_goes_here'
+
+### Creating an alias for the SSH Tunnel
+alias tunn="ssh -L $LOCAL_HOST_PORT:$LOCAL_HOST_IP:$TARGET_SRC_PORT -p 22 -l $SSH_USER $TARGET -N -f"
+
+# Adding Sublimetext3 to the PATH
+export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+
